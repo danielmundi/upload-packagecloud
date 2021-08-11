@@ -1,0 +1,32 @@
+name: Upload package PackageCloud.io
+description: Upload a package to PackageCloud.io
+branding:
+  icon: package
+inputs:
+  package-name:
+    description: Name of the package to upload
+    required: true
+  packagecloud-username:
+    description: The username to use on PackageCloud.io
+    required: true
+  packagecloud-repo:
+    description: The repository to upload on this user
+    required: true
+  packagecloud-distrib:
+    description: The distribution/version this package is meant to
+    required: false
+  packagecloud-token:
+    description: The Token with push access
+    required: true
+runs:
+  using: composite
+  steps:
+    - name: Upload package to PackageCloud.io
+      run: ${{ github.action_path }}/push.sh
+      shell: bash
+      env:
+        PACKAGE_NAME: ${{ inputs.package-name }}
+        PACKAGECLOUD_USERNAME: ${{ inputs.packagecloud-username }}
+        PACKAGECLOUD_REPO: ${{ inputs.packagecloud-repo }}
+        PACKAGECLOUD_DISTRIB: ${{ inputs.packagecloud-distrib }}
+        PACKAGECLOUD_TOKEN: ${{ inputs.packagecloud-token }}
