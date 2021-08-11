@@ -2,6 +2,7 @@ name: Upload package PackageCloud.io
 description: Upload a package to PackageCloud.io
 branding:
   icon: package
+  color: blue
 inputs:
   package-name:
     description: Name of the package to upload
